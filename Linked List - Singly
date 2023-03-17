@@ -42,6 +42,7 @@ class RiwayatPasien:
 
         if self.head.nama == nama:
             self.head = self.head.next
+            print('\n>> Pasien Berhasil dihapus <<')
             return
 
         current_pasien = self.head
@@ -49,12 +50,13 @@ class RiwayatPasien:
             if current_pasien.next.nama == nama:
                 current_pasien.next = current_pasien.next.next
                 return
-            current_pasien = current_pasien.next
+            current_pasien = current_pasien.next            
+        else:
+            print(f'\n>> Nama Pasien "{nama}" tidak ditemukan <<')
 
     def cari_pasien(self, nama):
         if self.head is None:
             return None
-
         current_pasien = self.head
         while current_pasien is not None:
             if current_pasien.nama == nama:
@@ -65,19 +67,19 @@ class RiwayatPasien:
 
     def print_list(self):
         if self.head is None:
-            print("\n>> Tidak ada pasien <<")
+            print(f'\n>> Data Pasien "{cari}" tidak ditemukan <<')
             return
 
         current_pasien = self.head
         while current_pasien is not None:
-            print(f"{current_pasien.nama}    | ({current_pasien.umur} tahun)  | Tanggal Positif : {current_pasien.tanggal_positif}")
+            print(f"{current_pasien.nama} |({current_pasien.umur} tahun)| Tanggal Positif : {current_pasien.tanggal_positif}")
             current_pasien = current_pasien.next
 
 riwayat = RiwayatPasien()
-riwayat.tambah_pasien('sambody ',  52 , '7 Desember 2020 ')
-riwayat.tambah_pasien('hawyou  ',  45 , '1 Januari 2021  ')
-riwayat.tambah_pasien('leesarr ',  30 , '1 Januari 2021  ')
-riwayat.tambah_pasien('yonie   ',  27 , '19 Februari 2021')
+riwayat.tambah_pasien('sambody',  52 , '7 Desember 2020 ')
+riwayat.tambah_pasien('hawyouu',  45 , '1 Januari 2021  ')
+riwayat.tambah_pasien('leesarr',  30 , '1 Januari 2021  ')
+riwayat.tambah_pasien('yonieee',  27 , '19 Februari 2021')
 
 def konf():
     yakin = input('\nIngin kembali ke menu? [y/n]: ')
@@ -127,16 +129,15 @@ def menu():
     elif pilih == '4':
         nama2 = input('Masukkan nama yang ingin dihapus : ')
         riwayat.hapus_pasien(nama2)
-        print('\n>> Pasien Berhasil dihapus <<')
         konf()
 
     elif pilih == '5':
         cari = input('Masukkan nama pasien yang ingin dicari : ')
         cari_pasien = riwayat.cari_pasien(cari)
         if cari_pasien:
-            print(f"Data pasien ditemukan: {cari_pasien.nama} ({cari_pasien.umur} tahun) | Tanggal Positif : {cari_pasien.tanggal_positif}")
+            print(f"Data pasien ditemukan: {cari_pasien.nama} | ({cari_pasien.umur} tahun) | Tanggal Positif : {cari_pasien.tanggal_positif}")
         else:
-            print("\n>> Data pasien tidak ditemukan <<")
+            print(f'\n>> Nama Pasien "{cari}" tidak ditemukan <<')
         konf()
 
     elif pilih == '6':
